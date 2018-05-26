@@ -171,6 +171,8 @@ public class LaserScan extends Message{
                 }
             }
 
+            // set intensities to 1000
+            //todo: intensities depending real or not
             JsonArrayBuilder jsonIntensityBuilder = Json.createArrayBuilder();
             JsonArray intensityArray = jsonObject.getJsonArray(LaserScan.INTENSITIES);
             float[] intensities = new float[intensityArray.size()];

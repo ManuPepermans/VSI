@@ -10,17 +10,17 @@ import java.util.List;
 /**
  * Created by the following students at the University of Antwerp
  * Faculty of Applied Engineering: Electronics and ICT
- * Janssens Arthur, De Laet Jan and Verhoeven Peter.
+ * Manu Pepermans
  *
  * This class manages robots and if every robot is created using this class, no robot can have the same ID.
  **/
-public class AgentHandler implements Runnable{
+public class AgentHandler {
     private long agentCounter = 0;
 
     private List<Client> clients;
 
     /**
-     * New Robothandler
+     * Creates agents.
      */
     public AgentHandler(){
         clients = new ArrayList<Client>();
@@ -31,7 +31,7 @@ public class AgentHandler implements Runnable{
     }
 
     /**
-     * Create a new robot with a new ID
+     * Create a new agent with a new ID
      * @param model_name
      * @param pose
      * @param twist
@@ -42,10 +42,4 @@ public class AgentHandler implements Runnable{
         return new Agent(agentCounter, model_name, pose, twist, this);
     }
 
-    /**
-     * Continuously update every non local robot's location for every client
-     */
-    public void run() {
-
-    }
 }

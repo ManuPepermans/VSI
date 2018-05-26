@@ -37,8 +37,11 @@ public class Main {
     // arguments: "172.16.0.26 172.16.108.138"
 
     /**
-     * Starting the agent
-     * @param args containing the IP address of the host where ROS is running the ip address if the VSMS
+     * Launches the VSI
+     * @param args argument holds ip address server, ip address Rosbridge and the non-madatory test name.
+     *
+     * @throws IOException
+     * @throws InterruptedException
      */
     public Main(String[] args) throws IOException, InterruptedException {
         if (args.length == 3)
@@ -62,18 +65,16 @@ public class Main {
 
         System.out.println("Starting agent raytracer...");
 
-        Thread robotUpdater = new Thread(agentHandler);
-
-        robotUpdater.start();
-
+        // initialises and let the server now
         init();
 
+        // stop connection of the init mode
         stopConnection();
 
         RealClient client = new RealClient(rosHost, 9090, "ThisAgent");
         client.ownedAgents.add(agentHandler.newAgent("main", new Pose(new Point(0, 0, 0), Quat.toQuaternion(0,0,0)), new Twist()));
-        //client.externalAgents.add(agentHandler.newRobot("inTheWay", new Pose(new Point(3, 0, 0), Quat.toQuaternion(0,0,90)), new Twist()));
 
+        // infinite loop
 while(true) {
 }
 

@@ -24,7 +24,7 @@ public class RealClient extends Client{
     }
 
     /**
-     * Get robots from client and update robots already tracked
+     * Start thread to get positions from Rosbridge
      */
     public void agentPose() {
         Topic echoBack = new Topic(ros, "/amcl_pose", "geometry_msgs/PoseWithCovarianceStamped",300);
@@ -34,6 +34,9 @@ public class RealClient extends Client{
 
     }
 
+    /**
+     * Start thread to get laserdata from Rosbridge
+     */
     @Override
     public void lidarScan() {
         Topic laserScan = new Topic(ros, "/simrobot1/hokuyoScan", "sensor_msgs/LaserScan", 300);
@@ -41,6 +44,10 @@ public class RealClient extends Client{
 
     }
 
+    /**
+     * Start thread to get latest clock from Rosbridge
+     * Is not needed, is to trick the system
+     */
     @Override
     public void  agentClock() {
         Topic updateClock = new Topic(ros, "/clock", "rosgraph_msgs/Clock");
@@ -54,8 +61,4 @@ public class RealClient extends Client{
         });
 
     }
-
-    //public void drawExternalRobots() {
-      //  return;
-    //}
 }

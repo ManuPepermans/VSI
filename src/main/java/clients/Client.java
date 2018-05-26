@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by the following student at the University of Antwerp
  * Faculty of Applied Engineering: Electronics and ICT
- * Manu Pepzrmans
+ * Manu Pepermans
  **/
 abstract public class Client {
 

@@ -7,7 +7,8 @@ import raytrace.Segment;
 /**
  * Created by the following students at the University of Antwerp
  * Faculty of Applied Engineering: Electronics and ICT
- * Janssens Arthur, De Laet Jan and Verhoeven Peter.
+ * Based on Janssens Arthur, De Laet Jan and Verhoeven Peter their work
+ * Adaptations by Manu Pepermans
  **/
 public class Agent {
 

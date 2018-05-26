@@ -15,10 +15,12 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by the following students at the University of Antwerp
  * Faculty of Applied Engineering: Electronics and ICT
- * Janssens Arthur, De Laet Jan and Verhoeven Peter.
+ * Based on Janssens Arthur, De Laet Jan and Verhoeven Peter their work
+ * Adaptations by Manu Pepermans
  *
- * Used by the Real Clients to update the laserScan with the external robots
+ * Used by the agents to update the laserScan with the external robots
  **/
+
 public class MyLaserCallback implements TopicCallback {
     RealClient client;
 
@@ -51,6 +53,7 @@ public class MyLaserCallback implements TopicCallback {
                     e.printStackTrace();
                 }
 
+                // time from ROS
                 synchronized (client.clientTime) {
                     time = edu.wpi.rail.jrosbridge.primitives.Time.fromJsonString(client.clientTime);
                 }
@@ -61,6 +64,7 @@ public class MyLaserCallback implements TopicCallback {
                 updatedLaserScan.publish(new LaserScan(h, laserScan.getAngle_min(), laserScan.getAngle_max(), laserScan.getAngle_increment(), laserScan.getTime_increment(), laserScan.getScan_time(), laserScan.getRange_min(), laserScan.getRange_max(), updatedRanges, getJsonArrayBuilder(updatedRanges), laserScan.getIntensities(), getJsonArrayBuilder(laserScan.getIntensities())));
             } else {
 
+                // time from ROS
                 synchronized (client.clientTime) {
                     time = edu.wpi.rail.jrosbridge.primitives.Time.fromJsonString(client.clientTime);
                 }

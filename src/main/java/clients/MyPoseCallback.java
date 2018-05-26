@@ -27,6 +27,7 @@ import static SimServer.Main.*;
  * The VSMS will return a list of poses of agents in the same environment.
  * These agents will be added to a list ready for raytracing.
  **/
+
 public class MyPoseCallback implements TopicCallback{
     RealClient client;
     private Socket socket;
@@ -67,6 +68,7 @@ public class MyPoseCallback implements TopicCallback{
             e.printStackTrace();
         }
 
+        // start test when needed
         if(!rtf.equals("time"))
         {
             startTime = System.nanoTime();
@@ -90,17 +92,21 @@ public class MyPoseCallback implements TopicCallback{
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            long endTime = System.nanoTime();
-            time = endTime-startTime;
-            try(FileWriter fw = new FileWriter(rtf+"_rtt.csv", true);
-                BufferedWriter bw = new BufferedWriter(fw);
-                PrintWriter out = new PrintWriter(bw))
-            {
-                out.println(time);
-                //more code
-            } catch (IOException e) {
-                //exception handling left as an exercise for the reader
+
+            // stop test if needed
+            if(!rtf.equals("time")){
+                long endTime = System.nanoTime();
+                time = endTime - startTime;
+                try (FileWriter fw = new FileWriter(rtf + "_rtt.csv", true);
+                     BufferedWriter bw = new BufferedWriter(fw);
+                     PrintWriter out = new PrintWriter(bw)) {
+                    out.println(time);
+                    //more code
+                } catch (IOException e) {
+                    //exception handling left as an exercise for the reader
+                }
             }
+
             if (inAgent != null) {
                 try {
                     inAgent.close();
@@ -108,6 +114,7 @@ public class MyPoseCallback implements TopicCallback{
                     e.printStackTrace();
                 }
             }
+            // close socket
             try{socket.close();
             }catch(IOException e){
                 e.printStackTrace();

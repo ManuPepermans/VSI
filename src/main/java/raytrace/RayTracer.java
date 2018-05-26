@@ -15,18 +15,18 @@ import static SimServer.Main.rtf;
 /**
  * Created by the following students at the University of Antwerp
  * Faculty of Applied Engineering: Electronics and ICT
- * Janssens Arthur, De Laet Jan and Verhoeven Peter.
+ * Based on Janssens Arthur, De Laet Jan and Verhoeven Peter their work
+ * Adaptations by Manu Pepermans
  *
  * The Raytracer raytraces a scene by creating and managing threads performing the raytracing
  *
- * Only works with real clients
  **/
 public class RayTracer {
 
     //This value is supposed to be divided by -pi/4, but it generates an offset if you don't substract 0.1
     private final static double angleStartRad = Math.toRadians(-135); //-0.28;
     //private final static double angleEndRad = Math.PI-angleStartRad;
-    //todo: variable for passing # rays
+    //todo: variable for passing # rays -> only for virtual now! (300)
     private final static double angleDiffRad = Math.toRadians(270) / (300);
 
     /**
@@ -88,6 +88,8 @@ public class RayTracer {
             }
 
             //rayTrace
+            // Added interpolation by factor 2
+
             while (i < length-1) // length = amount of rays (1080)
             {
                 int n = 0;
