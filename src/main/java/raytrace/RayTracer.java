@@ -40,7 +40,7 @@ public class RayTracer {
      * @param length number of beams
      * @return
      */
-    public static float[] rayTrace(RealClient client, LaserScan laserScan, int length) throws FileNotFoundException, UnsupportedEncodingException {
+    public static float[] rayTrace(RealClient client, LaserScan laserScan, int length) {
         long time = 0;
 
         long startTime = 0;

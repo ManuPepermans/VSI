@@ -43,7 +43,7 @@ public class Main {
      * Starting the agent
      * @param args containing the IP address of the host where ROS is running the ip address if the VSMS
      */
-    public Main(String[] args) throws IOException, InterruptedException {
+    public Main(String[] args) throws IOException {
         if (args.length == 3)
         {
             serverHost = args[0];

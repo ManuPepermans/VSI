@@ -73,15 +73,9 @@ public class Agent {
     @Override
     public boolean equals(Object o){
         if(o.getClass() == this.getClass()){
-            if(((Agent) o).model_name.equals(this.model_name))
-                return true;
-            else
-                return false;
+            return ((Agent) o).model_name.equals(this.model_name);
         }else if(o.getClass() == String.class){
-            if(((String) o) == this.model_name)
-                return true;
-            else
-                return false;
+            return o == this.model_name;
         }
         return false;
     }

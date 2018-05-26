@@ -15,10 +15,12 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by the following students at the University of Antwerp
  * Faculty of Applied Engineering: Electronics and ICT
- * Janssens Arthur, De Laet Jan and Verhoeven Peter.
+ * Based on Janssens Arthur, De Laet Jan and Verhoeven Peter their work
+ * Adaptations by Manu Pepermans
  *
- * Used by the Real Clients to update the laserScan with the external robots
+ * Used by the agents to update the laserScan with the external robots
  **/
+
 public class MyLaserCallback implements TopicCallback {
     RealClient client;
 
@@ -42,29 +44,19 @@ public class MyLaserCallback implements TopicCallback {
             if (client.externalAgents.size() > 0 && client.ownedAgents.size() > 0) {
                 //Raytrace, modify laserscan
                 float[] updatedRanges = new float[0];
-                try {
-                    updatedRanges = RayTracer.rayTrace(client, laserScan, laserScan.getRanges().length);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                    System.out.println("Ranges not found");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-
+                updatedRanges = RayTracer.rayTrace(client, laserScan, laserScan.getRanges().length);
+                // time from ROS
                 synchronized (client.clientTime) {
                     time = edu.wpi.rail.jrosbridge.primitives.Time.fromJsonString(client.clientTime);
                 }
-
                 h = new Header(laserScan.getHeader().getSeq(), time, new String("laser"));
-
                 //publish updated laserscan
                 updatedLaserScan.publish(new LaserScan(h, laserScan.getAngle_min(), laserScan.getAngle_max(), laserScan.getAngle_increment(), laserScan.getTime_increment(), laserScan.getScan_time(), laserScan.getRange_min(), laserScan.getRange_max(), updatedRanges, getJsonArrayBuilder(updatedRanges), laserScan.getIntensities(), getJsonArrayBuilder(laserScan.getIntensities())));
             } else {
-
+                // time from ROS
                 synchronized (client.clientTime) {
                     time = edu.wpi.rail.jrosbridge.primitives.Time.fromJsonString(client.clientTime);
                 }
-
                 h = new Header(laserScan.getHeader().getSeq(), time, new String("laser"));
 
                 //publish unmodified laserscan

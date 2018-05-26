@@ -30,16 +30,12 @@ public class RealClient extends Client{
     public void agentPose() {
         Topic echoBack = new Topic(ros, "/amcl_pose", "geometry_msgs/PoseWithCovarianceStamped",300);
         echoBack.subscribe(new MyPoseCallback(this));
-
-        //
-
     }
 
     @Override
     public void lidarScan() {
         Topic laserScan = new Topic(ros, "/simrobot1/hokuyoScan", "sensor_msgs/LaserScan", 300);
         laserScan.subscribe(new MyLaserCallback(this));
-
     }
 
     @Override
@@ -49,7 +45,6 @@ public class RealClient extends Client{
             @Override
             public void handleMessage(Message message) {
                 JsonObject jsonObject = message.toJsonObject();
-
                 clientTime = jsonObject.getJsonObject("clock").toString();
             }
         });
