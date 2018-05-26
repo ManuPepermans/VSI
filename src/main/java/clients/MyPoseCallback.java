@@ -39,8 +39,6 @@ public class MyPoseCallback implements TopicCallback{
     public long startTime = 0;
 
 
-
-
     public MyPoseCallback(RealClient client){
         this.client = client;
     }

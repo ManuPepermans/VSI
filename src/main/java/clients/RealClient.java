@@ -50,7 +50,4 @@ public class RealClient extends Client{
         });
 
     }
-    //public void drawExternalRobots() {
-      //  return;
-    //}
 }
