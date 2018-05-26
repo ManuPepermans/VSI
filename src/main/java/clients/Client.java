@@ -55,6 +55,7 @@ abstract public class Client {
         //Callback threads
        lidarScan();
        agentPose();
+       agentClock();
     }
 
     /**
@@ -66,5 +67,8 @@ abstract public class Client {
 
     abstract public void lidarScan();
     abstract public void agentPose();
+    abstract public void agentClock();
+
+
 
 }

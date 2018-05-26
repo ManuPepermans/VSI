@@ -63,7 +63,7 @@ public class Main {
             System.out.println("ROS ip:"+rosHost);
         }
 
-        System.out.println("Starting agent raytracer...");
+        System.out.println("Starting agent raytracer...without optimalisation V0.1");
 
 
         Thread robotUpdater = new Thread(agentHandler);
