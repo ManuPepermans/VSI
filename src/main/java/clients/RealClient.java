@@ -26,7 +26,7 @@ public class RealClient extends Client{
     /**
      * Get robots from client and update robots already tracked
      */
-    public void updateOwnedRobots() {
+    public void agentPose() {
         Topic echoBack = new Topic(ros, "/amcl_pose", "geometry_msgs/PoseWithCovarianceStamped",300);
         echoBack.subscribe(new MyPoseCallback(this));
 
@@ -42,7 +42,7 @@ public class RealClient extends Client{
     }
 
     @Override
-    public void  agentPose() {
+    public void  agentClock() {
         Topic updateClock = new Topic(ros, "/clock", "rosgraph_msgs/Clock");
         updateClock.subscribe(new TopicCallback() {
             @Override

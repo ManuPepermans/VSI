@@ -90,11 +90,14 @@ public class RayTracer {
             //rayTrace
             while (i < length-1) // length = amount of rays (1080)
             {
+                int n = 0;
                 for(int m = 0; m<cores; m++)
                 {
-                    rayTraceThreads.set(m, new RayTraceThread(new Point3D(position[0],position[1],position[2]), current, currentCarAngleRad+angleDiffRad*m, segments));
+
+                    rayTraceThreads.set(m, new RayTraceThread(new Point3D(position[0],position[1],position[2]), current, currentCarAngleRad+angleDiffRad*n, segments));
                     threads.set(m, new Thread(rayTraceThreads.get(m)));
                     threads.get(m).start();
+                    n=n+2;
                 }
 
                 //Wait for threads
@@ -116,17 +119,23 @@ public class RayTracer {
                     if (hit != null)
                     {
                         if (hit.getTime() < ranges[i+k])
-                            data[i+k] = (float) hit.getTime();
+                            for(int m = 0; m<cores; m++) {
+                                data[i+k + m] = (float) hit.getTime()
+                                ;                            }
+
                     }
                     else
                     {
                         if(i+k+1 <= length)
-                            data[i+k] = ranges[i+k];
+                            for(int m = 0; m<cores; m++) {
+                                data[i + m + k] = ranges[i + m + k];
+                            }
+
                     }
                 }
 
-                current += angleDiffRad*cores;
-                i += cores;
+                current += angleDiffRad*cores*2;
+                i += cores*2;
             }
         }
 

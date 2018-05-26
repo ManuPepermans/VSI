@@ -8,10 +8,7 @@ import edu.wpi.rail.jrosbridge.messages.geometry.Pose;
 import edu.wpi.rail.jrosbridge.messages.geometry.Twist;
 import extras.Quat;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -64,7 +61,6 @@ public class Main {
         }
 
         System.out.println("Starting agent raytracer...");
-
 
         Thread robotUpdater = new Thread(agentHandler);
 
